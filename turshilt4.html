@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Математикийн Шалгалт</title>
+  <style>
+    /* CSS */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    h2 {
+      color: #444;
+    }
+
+    .question {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      text-align: center;
+    }
+
+    #certificate {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Математикийн Шалгалт</h1>
+
+    <form id="quiz-form">
+      <h2>Тоо Математик (Arithmetic)</h2>
+      
+      <div class="question">
+        <label for="q1">1. \( 3x + 5 = 20 \). \( x \)-ийн утгыг олно уу:</label>
+        <input type="number" id="q1" name="q1">
+      </div>
+
+      <div class="question">
+        <label for="q2">2. Хэрвээ 6 хүн 3 цагт 12 ширхэг мод тарьдаг бол 18 хүн хэрхэн мод тарих вэ?</label>
+        <input type="number" id="q2" name="q2">
+      </div>
+
+      <div class="question">
+        <label for="q3">3. Таны харж буй том хэмжээний дэлгэцийн урт 24 инч, өргөн 18 инч байна. Дэлгэцийн диагональ уртыг олно уу:</label>
+        <input type="number" id="q3" name="q3">
+      </div>
+
+      <h2>Алгебр (Algebra)</h2>
+
+      <div class="question">
+        <label for="q4">1. \( 4x + 2y = 14 \) болон \( 2x - y = 4 \)-ийн системийн шийдлийг олно уу:</label>
+        <input type="text" id="q4" name="q4">
+      </div>
+
+      <div class="question">
+        <label for="q5">2. \( 3(x + 2) = 4(x - 1) \) тэгшитгэлийг шийднэ үү:</label>
+        <input type="text" id="q5" name="q5">
+      </div>
+
+      <div class="question">
+        <label for="q6">3. Хэрвээ \( y = 2x + 3 \) бол \( y \)-ийн утгыг олно уу, хэрвээ \( x = 5 \):</label>
+        <input type="number" id="q6" name="q6">
+      </div>
+
+      <button type="submit" id="submit-btn">Шалгах</button>
+    </form>
+
+    <div id="result" style="display:none;">
+      <h2>Таны Үр Дүн</h2>
+      <p id="score"></p>
+      <p id="level"></p>
+      
+      <div id="certificate" style="display:none;">
+        <h3>Таны сертификат:</h3>
+        <p>Таны нэр: <span id="name"></span></p>
+        <p>Түвшин: <span id="certificate-level"></span></p>
+        <p>Математикийн Шалгалтын Сертификат</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript код
+    document.getElementById("quiz-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Формыг илгээхийг болиулах
+
+      // Хариултуудыг авах
+      let q1 = parseInt(document.getElementById("q1").value);
+      let q2 = parseInt(document.getElementById("q2").value);
+      let q3 = parseInt(document.getElementById("q3").value);
+      let q4 = document.getElementById("q4").value.trim().toLowerCase();
+      let q5 = document.getElementById("q5").value.trim().toLowerCase();
+      let q6 = parseInt(document.getElementById("q6").value);
+
+      // Зөв хариулттай харьцуулах
+      let score = 0;
+
+      // Асуулт 1
+      if (q1 === 5) score++;
+      // Асуулт 2
+      if (q2 === 54) score++;
+      // Асуулт 3
+      if (q3 === 30) score++;
+      // Асуулт 4
+      if (q4 === "x=3, y=2") score++;
+      // Асуулт 5
+      if (q5 === "x=3") score++;
+      // Асуулт 6
+      if (q6 === 13) score++;
+
+      // Түвшин тогтоох
+      let level = "";
+      if (score === 6) {
+        level = "Тавигдсан өндөр түвшний амжилт!";
+      } else if (score >= 4) {
+        level = "Дунд түвшний амжилт!";
+      } else {
+        level = "Тамирчны эхлэл.";
+      }
+
+      // Хариултыг дэлгэцэнд гаргах
+      document.getElementById("score").innerText = `Таны оноо: ${score} / 6`;
+      document.getElementById("level").innerText = level;
+      document.getElementById("result").style.display = "block";
+
+      // Сертификат гаргах
+      document.getElementById("certificate").style.display = "block";  // Сертификат харуулах
+      document.getElementById("certificate-level").innerText = level; // Түвшинг сертификат дээр харуулах
+
+      // Сертификатын нэрийг тохируулах
+      const name = prompt("Таны нэрийг оруулна уу:");
+      document.getElementById("name").innerText = name;
+    });
+  </script>
+</body>
+</html>
